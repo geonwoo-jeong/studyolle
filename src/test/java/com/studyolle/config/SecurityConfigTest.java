@@ -67,6 +67,7 @@ class SecurityConfigTest {
 
         Account account = accountRepository.findByEmail("email@email.com");
         assertNotNull(account);
+        assertNotNull(account.getEmailCheckToken());
         assertNotEquals(account.getPassword(), "12345678");
         then(javaMailSender).should().send(any(SimpleMailMessage.class));
     }

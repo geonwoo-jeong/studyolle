@@ -1,6 +1,7 @@
 package com.studyolle.config;
 
 import com.studyolle.account.AccountRepository;
+import com.studyolle.domain.Account;
 import lombok.Data;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,7 +65,9 @@ class SecurityConfigTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
 
-        assertTrue(accountRepository.existsByEmail("email@email.com"));
+        Account account = accountRepository.findByEmail("email@email.com");
+        assertNotNull(account);
+        assertNotEquals(account.getPassword(), "12345678");
         then(javaMailSender).should().send(any(SimpleMailMessage.class));
     }
 }

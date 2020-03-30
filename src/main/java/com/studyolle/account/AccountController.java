@@ -6,6 +6,7 @@ import org.dom4j.rule.Mode;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Controller
+@Transactional
 @RequiredArgsConstructor
 public class AccountController {
 
